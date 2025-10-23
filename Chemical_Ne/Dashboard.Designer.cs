@@ -31,7 +31,6 @@
             this.lblCredits = new System.Windows.Forms.Label();
             this.lblMySQLConStatus = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.PdPrinter = new System.Drawing.Printing.PrintDocument();
             this.SuspendLayout();
             // 
             // lblCredits
@@ -87,6 +86,5 @@
         public System.Windows.Forms.Label lblCredits;
         public System.Windows.Forms.Label lblMySQLConStatus;
         private System.Windows.Forms.Button button1;
-        private System.Drawing.Printing.PrintDocument PdPrinter;
     }
 }

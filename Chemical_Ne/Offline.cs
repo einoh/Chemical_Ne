@@ -12,9 +12,11 @@ namespace Chemical_Ne
 {
     public partial class Offline : Form
     {
-        public Offline()
+        private readonly Initiator _initiator;
+        public Offline(Initiator initiator)
         {
             InitializeComponent();
+            _initiator = initiator;
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Drawing;
+using System.Drawing.Printing;
 using System.IO.Ports;
 using System.Linq;
 using System.Management;
@@ -11,21 +13,32 @@ namespace Chemical_Ne
         private string data = string.Empty;
         private int counter = 0;
 
-        readonly Dashboard _Dashboard = new Dashboard();
-        readonly Offline _Offline = new Offline();
+        readonly Dashboard _Dashboard;
+        readonly Offline _Offline;
+        //readonly Offline _Offline = new Offline();
 
         public Initiator()
         {
             InitializeComponent();
+
             this.IsMdiContainer = true;
 
-            // Assign MDI parents
-            _Dashboard.MdiParent = this;
-            _Offline.MdiParent = this;
+            _Dashboard = new Dashboard(this)
+            {
+                MdiParent = this
+            };
+
+            _Offline = new Offline(this)
+            {
+                MdiParent = this
+            };
+
 
             // Initialize Serial Port
-            SpArduinoConnection = new SerialPort("COM3", 9600);
             SpArduinoConnection.DataReceived += SpArduinoConnection_DataReceived;
+
+            //Initialize Printer
+            PdPrinter.PrintPage += PdPrinter_PrintPage;  // Add this line
 
             // Try opening port
             try
@@ -213,5 +226,31 @@ namespace Chemical_Ne
             _Offline.lblStatus.Left = (_Offline.ClientSize.Width - _Offline.lblStatus.Width) / 2;
         }
 
+        private void PdPrinter_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Font repFontNormal = new Font("Century Gothic", 10);
+            Font repFontVoucher = new Font("Century Gothic", 14, FontStyle.Bold);
+
+            e.Graphics.DrawString("Branchette WiFi", repFontNormal, Brushes.Black, 80, 5);
+            e.Graphics.DrawString("9fasFs15sf", repFontVoucher, Brushes.Black, 80, 25);
+            e.Graphics.DrawString("1 Hour Voucher Code", repFontNormal, Brushes.Black, 70, 50);
+            e.Graphics.DrawString(DateTime.Now.ToString("yyyy-MM-dd hh:mm tt"), repFontNormal, Brushes.Black, 80, 70);
+            e.Graphics.DrawString("Golden Success College", repFontNormal, Brushes.Black, 80, 90);
+        }
+
+        public void PrintVoucher()
+        {
+            try
+            {
+                PdPrinter.PrinterSettings.Copies = 1;
+                PdPrinter.PrintController = new StandardPrintController(); // hides print dialog
+                PdPrinter.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Printing error: {ex.Message}", "Print Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
