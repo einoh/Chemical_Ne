@@ -1,5 +1,4 @@
-﻿using Org.BouncyCastle.Asn1.Cmp;
-using System;
+﻿using System;
 using System.IO.Ports;
 using System.Linq;
 using System.Management;
@@ -97,7 +96,7 @@ namespace Chemical_Ne
                     {
                         _Dashboard.Hide();
                         _Offline.Show();
-                        _Offline.lblStatus.Text = "Connection Disconnected";
+                        _Offline.lblStatus.Text = "Database Disconnected";
                         CenterStatusLabel();
                     }
                 }
