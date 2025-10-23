@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO.Ports;
 using System.Linq;
 using System.Management;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Chemical_Ne
@@ -17,8 +11,8 @@ namespace Chemical_Ne
         private string data = string.Empty;
         private int counter = 0;
 
-        Dashboard _Dashboard = new Dashboard();
-        Offline _Offline = new Offline();
+        readonly Dashboard _Dashboard = new Dashboard();
+        readonly Offline _Offline = new Offline();
 
         public Initiator()
         {
@@ -47,12 +41,12 @@ namespace Chemical_Ne
             _Dashboard.Show();
 
             // Example timer to trigger periodic checks
-            using (Timer timer = new Timer())
+            Timer timer = new Timer
             {
-                timer.Interval = 1000; // 1 second
-                timer.Tick += TmrServerConnectionStatus_Tick;
-                timer.Start();
-            }
+                Interval = 1000 // 1 second
+            };
+            timer.Tick += TmrServerConnectionStatus_Tick;
+            timer.Start();
         }
 
         private void SpArduinoConnection_DataReceived(object sender, SerialDataReceivedEventArgs e)
@@ -99,7 +93,7 @@ namespace Chemical_Ne
                     }
                     else
                     {
-                        _Dashboard.Close();
+                        _Dashboard.Hide();
                         _Offline.Show();
                         _Offline.lblStatus.Text = "Connection Disconnected";
                     }
@@ -110,10 +104,11 @@ namespace Chemical_Ne
                 try
                 {
                     SpArduinoConnection.Open();
+                    SpArduinoConnection.DataReceived += SpArduinoConnection_DataReceived;
                 }
                 catch
                 {
-                    _Dashboard.Close();
+                    _Dashboard.Hide();
                     _Offline.Show();
                     _Offline.lblStatus.Text = "Hardware Disconnected";
                 }
@@ -126,14 +121,14 @@ namespace Chemical_Ne
             {
                 using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Printer"))
                 {
-                    foreach (ManagementObject printer in searcher.Get())
+                    foreach (ManagementObject printer in searcher.Get().Cast<ManagementObject>())
                     {
                         int statusValue = Convert.ToInt32(printer["PrinterStatus"]);
                         string status = PrinterStatusToString((PrinterStatus)statusValue);
 
                         if (status == "offline")
                         {
-                            _Dashboard.Close();
+                            _Dashboard.Hide();
                             _Offline.Show();
                             _Offline.lblStatus.Text = "Printer Disconnected";
                             return;
@@ -142,7 +137,7 @@ namespace Chemical_Ne
                 }
 
                 // Printer is online — show dashboard
-                _Offline.Close();
+                _Offline.Hide();
                 _Dashboard.Show();
             }
             catch (Exception ex)
