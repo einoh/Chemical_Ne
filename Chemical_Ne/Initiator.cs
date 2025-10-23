@@ -119,14 +119,17 @@ namespace Chemical_Ne
         {
             try
             {
+                bool printerFound = false;
                 using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Printer"))
                 {
                     foreach (ManagementObject printer in searcher.Get().Cast<ManagementObject>())
                     {
+                        printerFound = true;
                         int statusValue = Convert.ToInt32(printer["PrinterStatus"]);
+                        bool isOffline = Convert.ToBoolean(printer["WorkOffline"]);
                         string status = PrinterStatusToString((PrinterStatus)statusValue);
 
-                        if (status == "offline")
+                        if (status == "offline" || isOffline)
                         {
                             _Dashboard.Hide();
                             _Offline.Show();
@@ -136,12 +139,21 @@ namespace Chemical_Ne
                     }
                 }
 
+                if (!printerFound)
+                {
+                    _Dashboard.Hide();
+                    _Offline.Show();
+                    _Offline.lblStatus.Text = "No Printer Found";
+                    return;
+                }
+
                 // Printer is online — show dashboard
                 _Offline.Hide();
                 _Dashboard.Show();
             }
             catch (Exception ex)
             {
+                _Dashboard.Hide();
                 _Offline.Show();
                 _Offline.lblStatus.Text = "Error checking printer: " + ex.Message;
             }
