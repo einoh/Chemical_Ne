@@ -59,6 +59,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.lblMySQLConStatus);
             this.Controls.Add(this.lblCredits);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Dashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Dashboard";

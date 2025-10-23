@@ -33,7 +33,6 @@
             this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
             this.PdPrinter = new System.Drawing.Printing.PrintDocument();
             this.SpArduinoConnection = new System.IO.Ports.SerialPort(this.components);
-            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TmrServerConnectionStatus
@@ -46,27 +45,17 @@
             // 
             this.SpArduinoConnection.PortName = "COM3";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(434, 164);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
-            // 
             // Initiator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.IsMdiContainer = true;
             this.Name = "Initiator";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -76,7 +65,6 @@
         private System.IO.Ports.SerialPort serialPort1;
         private System.Drawing.Printing.PrintDocument PdPrinter;
         private System.IO.Ports.SerialPort SpArduinoConnection;
-        private System.Windows.Forms.Label label1;
     }
 }
 

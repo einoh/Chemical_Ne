@@ -47,6 +47,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
             this.Controls.Add(this.lblStatus);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Offline";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Offline";
