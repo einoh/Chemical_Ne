@@ -76,7 +76,6 @@ C:\Chemical_Github\Chemical_Ne\Chemical_Ne\bin\Debug\System.Numerics.Vectors.xml
 C:\Chemical_Github\Chemical_Ne\Chemical_Ne\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Chemical_Github\Chemical_Ne\Chemical_Ne\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Chemical_Github\Chemical_Ne\Chemical_Ne\obj\Debug\Chemical_Ne.csproj.AssemblyReference.cache
-C:\Chemical_Github\Chemical_Ne\Chemical_Ne\obj\Debug\Chemical_Ne.exe.config
 C:\Chemical_Github\Chemical_Ne\Chemical_Ne\obj\Debug\Chemical_Ne.Dashboard.resources
 C:\Chemical_Github\Chemical_Ne\Chemical_Ne\obj\Debug\Chemical_Ne.Initiator.resources
 C:\Chemical_Github\Chemical_Ne\Chemical_Ne\obj\Debug\Chemical_Ne.Offline.resources
