@@ -209,8 +209,6 @@ namespace Chemical_Ne
                 using (var connection = new MySql.Data.MySqlClient.MySqlConnection(connectionString))
                 {
                     connection.Open();
-                    _Dashboard.lblMySQLConStatus.Text = "MySQL Status: Connected";
-                    // If we got here, the connection was successful
                     return true;
                 }
             }
@@ -234,8 +232,8 @@ namespace Chemical_Ne
             e.Graphics.DrawString("Branchette WiFi", repFontNormal, Brushes.Black, 80, 5);
             e.Graphics.DrawString("9fasFs15sf", repFontVoucher, Brushes.Black, 80, 25);
             e.Graphics.DrawString("1 Hour Voucher Code", repFontNormal, Brushes.Black, 70, 50);
-            e.Graphics.DrawString(DateTime.Now.ToString("yyyy-MM-dd hh:mm tt"), repFontNormal, Brushes.Black, 80, 70);
-            e.Graphics.DrawString("Golden Success College", repFontNormal, Brushes.Black, 80, 90);
+            e.Graphics.DrawString(DateTime.Now.ToString("yyyy-MM-dd hh:mm tt"), repFontNormal, Brushes.Black, 50, 70);
+            e.Graphics.DrawString("Branchette Systems", repFontNormal, Brushes.Black, 80, 90);
         }
 
         public void PrintVoucher()

@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Drawing.Printing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Chemical_Ne
@@ -20,19 +12,27 @@ namespace Chemical_Ne
             _initiator = initiator;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Hours3_Click(object sender, EventArgs e)
         {
-            //check if lblCredits value is not zero or empty
             if (!string.IsNullOrEmpty(lblCredits.Text) && lblCredits.Text != "0" && lblCredits.Text != "Retrieving...")
             {
                 _initiator.PrintVoucher();
+                Hours3.Enabled = false;
             }
             else
             {
-                MessageBox.Show("No credits available.");
+                Hours3.Enabled = false;
             }
         }
 
-        
+        private void Hours8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Hours24_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
