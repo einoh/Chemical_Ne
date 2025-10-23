@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Asn1.Cmp;
+using System;
 using System.IO.Ports;
 using System.Linq;
 using System.Management;
@@ -36,6 +37,7 @@ namespace Chemical_Ne
             {
                 _Offline.Show();
                 _Offline.lblStatus.Text = "Hardware Disconnected";
+                CenterStatusLabel();
             }
 
             _Dashboard.Show();
@@ -96,6 +98,7 @@ namespace Chemical_Ne
                         _Dashboard.Hide();
                         _Offline.Show();
                         _Offline.lblStatus.Text = "Connection Disconnected";
+                        CenterStatusLabel();
                     }
                 }
             }
@@ -111,6 +114,7 @@ namespace Chemical_Ne
                     _Dashboard.Hide();
                     _Offline.Show();
                     _Offline.lblStatus.Text = "Hardware Disconnected";
+                    CenterStatusLabel();
                 }
             }
         }
@@ -134,6 +138,7 @@ namespace Chemical_Ne
                             _Dashboard.Hide();
                             _Offline.Show();
                             _Offline.lblStatus.Text = "Printer Disconnected";
+                            CenterStatusLabel();
                             return;
                         }
                     }
@@ -144,6 +149,7 @@ namespace Chemical_Ne
                     _Dashboard.Hide();
                     _Offline.Show();
                     _Offline.lblStatus.Text = "No Printer Found";
+                    CenterStatusLabel();
                     return;
                 }
 
@@ -156,6 +162,7 @@ namespace Chemical_Ne
                 _Dashboard.Hide();
                 _Offline.Show();
                 _Offline.lblStatus.Text = "Error checking printer: " + ex.Message;
+                CenterStatusLabel();
             }
         }
 
@@ -199,6 +206,12 @@ namespace Chemical_Ne
             {
                 return false;
             }
+        }
+
+        private void CenterStatusLabel()
+        {
+            _Offline.lblStatus.Top = (_Offline.ClientSize.Height - _Offline.lblStatus.Height) / 2;
+            _Offline.lblStatus.Left = (_Offline.ClientSize.Width - _Offline.lblStatus.Width) / 2;
         }
 
     }
