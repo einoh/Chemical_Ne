@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36616.10 d17.14
+VisualStudioVersion = 17.14.36616.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemical_Ne", "Chemical_Ne\Chemical_Ne.csproj", "{7294FA5E-D649-4CA3-AC6C-B3337EAD219E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chemical_Ne_API", "Chemical_Ne_API\Chemical_Ne_API.csproj", "{FD187038-C850-4222-A6F1-45D8C97FA756}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7294FA5E-D649-4CA3-AC6C-B3337EAD219E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7294FA5E-D649-4CA3-AC6C-B3337EAD219E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7294FA5E-D649-4CA3-AC6C-B3337EAD219E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FD187038-C850-4222-A6F1-45D8C97FA756}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FD187038-C850-4222-A6F1-45D8C97FA756}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FD187038-C850-4222-A6F1-45D8C97FA756}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FD187038-C850-4222-A6F1-45D8C97FA756}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
