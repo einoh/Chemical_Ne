@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
-using System.ComponentModel.DataAnnotations;
 
 namespace Chemical_Ne_API.Controllers
 {
@@ -35,7 +34,8 @@ namespace Chemical_Ne_API.Controllers
                 if (dtReader.Read())
                 {
                     string voucherCode = dtReader["voucher_code"]?.ToString()?.Trim() ?? string.Empty;
-                    return Ok(new { voucher_code = voucherCode });
+                    string voucherDuration = "weeeeee";
+                    return Ok(new { voucher_code = voucherCode, voucher_duration = voucherDuration });
                 }
                 else
                 {

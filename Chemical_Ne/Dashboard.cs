@@ -16,8 +16,10 @@ namespace Chemical_Ne
         {
             if (!string.IsNullOrEmpty(lblCredits.Text) && lblCredits.Text != "0" && lblCredits.Text != "Retrieving...")
             {
+                var result = Initiator.GetVoucherInfo(60);
+                _initiator.voucherCode = result.VoucherCode;
+                _initiator.voucherDuration = result.Duration;
                 _initiator.PrintVoucher();
-                Hours3.Enabled = false;
             }
             else
             {

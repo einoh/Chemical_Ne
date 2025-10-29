@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO.Ports;
@@ -14,6 +15,8 @@ namespace Chemical_Ne
     {
         private string data = string.Empty;
         private int counter = 0;
+        public string voucherCode = string.Empty;
+        public string voucherDuration = string.Empty;
 
         readonly Dashboard _Dashboard;
         readonly Offline _Offline;
@@ -221,6 +224,39 @@ namespace Chemical_Ne
             }
         }
 
+        public static (string VoucherCode, string Duration) GetVoucherInfo(int duration)
+        {
+            try
+            {
+                string url = $"http://localhost:5000/api/voucher/issue/{duration}";
+
+                using (var client = new HttpClient())
+                {
+                    HttpResponseMessage response = client.PostAsync(url, null).Result;
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string json = response.Content.ReadAsStringAsync().Result;
+                        JObject obj = JObject.Parse(json);
+
+                        string voucherCode = obj["voucher_code"]?.ToString() ?? string.Empty;
+                        string durationText = obj["voucher_duration"]?.ToString() ?? string.Empty;
+
+                        return (voucherCode, durationText);
+                    }
+                    else
+                    {
+                        return ($"Error: {response.StatusCode}", string.Empty);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return ($"Error: {ex.Message}", string.Empty);
+            }
+        }
+
+
         private void CenterStatusLabel()
         {
             _Offline.lblStatus.Top = (_Offline.ClientSize.Height - _Offline.lblStatus.Height) / 2;
@@ -245,8 +281,8 @@ namespace Chemical_Ne
 
             // Now print text centered
             DrawCenteredString("Branchette WiFi", repFontNormal, 5);
-            DrawCenteredString("9fasFs15sf", repFontVoucher, 25);
-            DrawCenteredString("1 Hour Voucher Code", repFontNormal, 50);
+            DrawCenteredString(voucherCode, repFontVoucher, 25);
+            DrawCenteredString($"{voucherDuration} Voucher Code", repFontNormal, 50);
             DrawCenteredString(DateTime.Now.ToString("yyyy-MM-dd hh:mm tt"), repFontNormal, 70);
             DrawCenteredString("Branchette Systems", repFontNormal, 90);
         }
