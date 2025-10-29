@@ -229,12 +229,25 @@ namespace Chemical_Ne
             Font repFontNormal = new Font("Century Gothic", 10);
             Font repFontVoucher = new Font("Century Gothic", 14, FontStyle.Bold);
 
-            e.Graphics.DrawString("Branchette WiFi", repFontNormal, Brushes.Black, 80, 5);
-            e.Graphics.DrawString("9fasFs15sf", repFontVoucher, Brushes.Black, 80, 25);
-            e.Graphics.DrawString("1 Hour Voucher Code", repFontNormal, Brushes.Black, 70, 50);
-            e.Graphics.DrawString(DateTime.Now.ToString("yyyy-MM-dd hh:mm tt"), repFontNormal, Brushes.Black, 50, 70);
-            e.Graphics.DrawString("Branchette Systems", repFontNormal, Brushes.Black, 80, 90);
+            // Get printable width in pixels
+            float pageWidth = e.PageBounds.Width;
+
+            // Helper function to center text horizontally
+            void DrawCenteredString(string text, Font font, float y)
+            {
+                SizeF textSize = e.Graphics.MeasureString(text, font);
+                float x = (pageWidth - textSize.Width) / 2;
+                e.Graphics.DrawString(text, font, Brushes.Black, x, y);
+            }
+
+            // Now print text centered
+            DrawCenteredString("Branchette WiFi", repFontNormal, 5);
+            DrawCenteredString("9fasFs15sf", repFontVoucher, 25);
+            DrawCenteredString("1 Hour Voucher Code", repFontNormal, 50);
+            DrawCenteredString(DateTime.Now.ToString("yyyy-MM-dd hh:mm tt"), repFontNormal, 70);
+            DrawCenteredString("Branchette Systems", repFontNormal, 90);
         }
+
 
         public void PrintVoucher()
         {
