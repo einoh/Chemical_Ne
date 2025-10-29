@@ -26,7 +26,7 @@ namespace Chemical_Ne_API.Controllers
                 using MySqlConnection sqlConn = new(configuration.GetConnectionString("constr"));
                 sqlConn.Open();
 
-                using MySqlCommand objCmd = new(@"SELECT he_issue_voucher(@duration) AS voucher_code;", sqlConn);
+                using MySqlCommand objCmd = new(@"CALL he_issue_voucher(@duration);", sqlConn);
                 objCmd.Parameters.Add("@duration", MySqlDbType.Int32).Value = duration.Value;
 
                 using MySqlDataReader dtReader = objCmd.ExecuteReader();
@@ -34,8 +34,46 @@ namespace Chemical_Ne_API.Controllers
                 if (dtReader.Read())
                 {
                     string voucherCode = dtReader["voucher_code"]?.ToString()?.Trim() ?? string.Empty;
-                    string voucherDuration = "weeeeee";
-                    return Ok(new { voucher_code = voucherCode, voucher_duration = voucherDuration });
+                    string voucherDurationStr = dtReader["voucher_duration"]?.ToString()?.Trim() ?? "0";
+
+                    // 🔹 Convert MySQL string minutes → hours/minutes
+                    if (int.TryParse(voucherDurationStr, out int minutes))
+                    {
+                        string formattedDuration;
+
+                        if (minutes < 60)
+                        {
+                            formattedDuration = $"{minutes} Minute{(minutes == 1 ? "" : "s")}";
+                        }
+                        else
+                        {
+                            double hours = minutes / 60.0;
+                            if (hours % 1 == 0)
+                            {
+                                // Whole number of hours
+                                formattedDuration = $"{(int)hours} Hour{(hours == 1 ? "" : "s")}";
+                            }
+                            else
+                            {
+                                // Fractional hour (e.g. 1.5 hrs)
+                                formattedDuration = $"{hours:0.##} Hours";
+                            }
+                        }
+
+                        return Ok(new
+                        {
+                            voucher_code = voucherCode,
+                            voucher_duration = formattedDuration
+                        });
+                    }
+                    else
+                    {
+                        return Ok(new
+                        {
+                            voucher_code = voucherCode,
+                            voucher_duration = "Invalid duration"
+                        });
+                    }
                 }
                 else
                 {
@@ -48,9 +86,10 @@ namespace Chemical_Ne_API.Controllers
             }
             catch (Exception ex)
             {
-                return BadRequest(new { message = $"Unexpected error: {ex.StackTrace}" });
+                return BadRequest(new { message = $"Unexpected error: {ex.Message}" });
             }
         }
+
 
 
 
