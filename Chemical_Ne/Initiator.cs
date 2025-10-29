@@ -4,6 +4,8 @@ using System.Drawing.Printing;
 using System.IO.Ports;
 using System.Linq;
 using System.Management;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Chemical_Ne
@@ -15,7 +17,6 @@ namespace Chemical_Ne
 
         readonly Dashboard _Dashboard;
         readonly Offline _Offline;
-        //readonly Offline _Offline = new Offline();
 
         public Initiator()
         {
@@ -40,7 +41,6 @@ namespace Chemical_Ne
             //Initialize Printer
             PdPrinter.PrintPage += PdPrinter_PrintPage;  // Add this line
 
-            // Try opening port
             try
             {
                 SpArduinoConnection.Open();
@@ -52,9 +52,6 @@ namespace Chemical_Ne
                 CenterStatusLabel();
             }
 
-            _Dashboard.Show();
-
-            // Example timer to trigger periodic checks
             Timer timer = new Timer
             {
                 Interval = 1000 // 1 second
@@ -83,8 +80,9 @@ namespace Chemical_Ne
         }
 
 
-        private void TmrServerConnectionStatus_Tick(object sender, EventArgs e)
+        private async void TmrServerConnectionStatus_Tick(object sender, EventArgs e)
         {
+            bool isOnline = await IsConnectionAvailableAsync();
             if (SpArduinoConnection.IsOpen)
             {
                 // Executes every second
@@ -101,7 +99,8 @@ namespace Chemical_Ne
                 {
                     counter = 0;
 
-                    if (IsConnectionAvailable())
+
+                    if (isOnline)
                     {
                         CheckPrinterStatus();
                     }
@@ -200,21 +199,26 @@ namespace Chemical_Ne
             }
         }
 
-        public bool IsConnectionAvailable()
+        public async Task<bool> IsConnectionAvailableAsync()
         {
-            string connectionString = "Server=localhost;Database=chemical_api;Uid=root;Pwd=gscidata;";
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.Timeout = TimeSpan.FromSeconds(3);
 
-            try
-            {
-                using (var connection = new MySql.Data.MySqlClient.MySqlConnection(connectionString))
+                try
                 {
-                    connection.Open();
-                    return true;
+                    HttpResponseMessage response = await httpClient.GetAsync("http://localhost:5000/api/voucher/status");
+                    return response.IsSuccessStatusCode;
                 }
-            }
-            catch (MySql.Data.MySqlClient.MySqlException)
-            {
-                return false;
+                catch (HttpRequestException)
+                {
+                    return false;
+                }
+                catch (TaskCanceledException)
+                {
+                    // Timeout or canceled request
+                    return false;
+                }
             }
         }
 
