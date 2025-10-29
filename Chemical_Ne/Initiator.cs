@@ -34,7 +34,6 @@ namespace Chemical_Ne
                 MdiParent = this
             };
 
-
             // Initialize Serial Port
             SpArduinoConnection.DataReceived += SpArduinoConnection_DataReceived;
 
