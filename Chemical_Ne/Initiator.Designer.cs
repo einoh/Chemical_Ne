@@ -43,7 +43,7 @@
             // 
             // SpArduinoConnection
             // 
-            this.SpArduinoConnection.PortName = "COM3";
+            this.SpArduinoConnection.PortName = "COM7";
             // 
             // Initiator
             // 
