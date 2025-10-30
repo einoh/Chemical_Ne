@@ -14,12 +14,14 @@ namespace Chemical_Ne
 
         private void Hours3_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(lblCredits.Text) && lblCredits.Text != "0" && lblCredits.Text != "Retrieving...")
+            Hours3.Enabled = false;
+            try
             {
-                var (VoucherCode, Duration) = Initiator.GetVoucherInfo(60);
-                if (VoucherCode != null && Duration != null)
+                if (!string.IsNullOrEmpty(lblCredits.Text) && lblCredits.Text != "0" && lblCredits.Text != "Retrieving...")
                 {
-                    if (VoucherCode != "Error: NotFound")
+                    Cursor = Cursors.WaitCursor;
+                    var (VoucherCode, Duration) = Initiator.GetVoucherInfo(60);
+                    if (!string.IsNullOrEmpty(VoucherCode) && !VoucherCode.StartsWith("Error"))
                     {
                         _initiator.voucherCode = VoucherCode;
                         _initiator.voucherDuration = Duration;
@@ -28,28 +30,37 @@ namespace Chemical_Ne
                     }
                     else
                     {
-                        Hours3.Enabled = false;
+                        lblError.Text = "Failed to get voucher code. Please try again.";
                     }
                 }
                 else
                 {
-                    Hours3.Enabled = false;
+                    lblError.Text = "Invalid or unavailable credits.";
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Hours3.Enabled = false;
+                lblError.Text = "An error occurred: " + ex.Message;
+            }
+            finally
+            {
+                Hours3.Enabled = true;
+                Cursor = Cursors.Default;
+                lblError.Text = ""; 
             }
         }
 
+
         private void Hours8_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(lblCredits.Text) && lblCredits.Text != "0" && lblCredits.Text != "Retrieving...")
+            Hours8.Enabled = false;
+            try
             {
-                var (VoucherCode, Duration) = Initiator.GetVoucherInfo(480);
-                if (VoucherCode != null && Duration != null)
+                if (!string.IsNullOrEmpty(lblCredits.Text) && lblCredits.Text != "0" && lblCredits.Text != "Retrieving...")
                 {
-                    if (VoucherCode != "Error: NotFound")
+                    Cursor = Cursors.WaitCursor;
+                    var (VoucherCode, Duration) = Initiator.GetVoucherInfo(480);
+                    if (!string.IsNullOrEmpty(VoucherCode) && !VoucherCode.StartsWith("Error"))
                     {
                         _initiator.voucherCode = VoucherCode;
                         _initiator.voucherDuration = Duration;
@@ -58,47 +69,62 @@ namespace Chemical_Ne
                     }
                     else
                     {
-                        Hours8.Enabled = false;
+                        lblError.Text = "Failed to get voucher code. Please try again.";
                     }
                 }
                 else
                 {
-                    Hours8.Enabled = false;
+                    lblError.Text = "Invalid or unavailable credits.";
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Hours8.Enabled = false;
+                lblError.Text = "An error occurred: " + ex.Message;
+            }
+            finally
+            {
+                Hours8.Enabled = true;
+                Cursor = Cursors.Default;
+                lblError.Text = "";
             }
         }
 
         private void Hours24_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(lblCredits.Text) && lblCredits.Text != "0" && lblCredits.Text != "Retrieving...")
+            Hours24.Enabled = false;
+            try
             {
-                var (VoucherCode, Duration) = Initiator.GetVoucherInfo(1440);
-                if (VoucherCode != null && Duration != null)
-                { 
-                    if (VoucherCode != "Error: NotFound")
+                if (!string.IsNullOrEmpty(lblCredits.Text) && lblCredits.Text != "0" && lblCredits.Text != "Retrieving...")
+                {
+                    Cursor = Cursors.WaitCursor;
+                    var (VoucherCode, Duration) = Initiator.GetVoucherInfo(1440);
+                    if (!string.IsNullOrEmpty(VoucherCode) && !VoucherCode.StartsWith("Error"))
                     {
                         _initiator.voucherCode = VoucherCode;
                         _initiator.voucherDuration = Duration;
                         _initiator.PrintVoucher();
-                        _initiator.SpArduinoConnection.Write("3");
+                        _initiator.SpArduinoConnection.Write("2");
+                        _initiator.SpArduinoConnection.Write("2");
                     }
                     else
                     {
-                        Hours24.Enabled = false;
+                        lblError.Text = "Failed to get voucher code. Please try again.";
                     }
                 }
                 else
                 {
-                    Hours24.Enabled = false;
+                    lblError.Text = "Invalid or unavailable credits.";
                 }
             }
-            else
+            catch (Exception ex)
             {
-                Hours24.Enabled = false;
+                lblError.Text = "An error occurred: " + ex.Message;
+            }
+            finally
+            {
+                Hours24.Enabled = true;
+                Cursor = Cursors.Default;
+                lblError.Text = "";
             }
         }
 
