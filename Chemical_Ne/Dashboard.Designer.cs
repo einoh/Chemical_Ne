@@ -45,7 +45,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblError = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -232,17 +231,6 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "BRANCHETTE SYSTEMS";
             // 
-            // lblError
-            // 
-            this.lblError.AutoSize = true;
-            this.lblError.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblError.ForeColor = System.Drawing.Color.Red;
-            this.lblError.Location = new System.Drawing.Point(401, 503);
-            this.lblError.Name = "lblError";
-            this.lblError.Size = new System.Drawing.Size(26, 38);
-            this.lblError.TabIndex = 10;
-            this.lblError.Text = ".";
-            // 
             // btnReset
             // 
             this.btnReset.BackColor = System.Drawing.Color.Transparent;
@@ -277,7 +265,6 @@
             this.ControlBox = false;
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnReset);
-            this.Controls.Add(this.lblError);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -320,7 +307,6 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label lblError;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnClose;
     }

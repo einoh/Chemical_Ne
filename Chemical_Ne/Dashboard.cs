@@ -25,36 +25,42 @@ namespace Chemical_Ne
             {
                 if (!string.IsNullOrEmpty(lblCredits.Text) && credits != 0 && lblCredits.Text != "Retrieving...")
                 {
-                    Cursor = Cursors.WaitCursor;
-                    var (VoucherCode, Duration) = Initiator.GetVoucherInfo(60);
-                    if (!string.IsNullOrEmpty(VoucherCode) && !VoucherCode.StartsWith("Error"))
+                    if (credits < 5)
                     {
-                        _initiator.voucherCode = VoucherCode;
-                        _initiator.voucherDuration = Duration;
-                        _initiator.PrintVoucher();
-                        _initiator.SpArduinoConnection.Write("1");
+                        MessageBox.Show("Insufficient credit balance.", "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        lblError.Text = "Failed to get voucher code. Please try again.";
+                        Cursor = Cursors.WaitCursor;
+                        var (VoucherCode, Duration) = Initiator.GetVoucherInfo(60);
+                        if (!string.IsNullOrEmpty(VoucherCode) && !VoucherCode.StartsWith("Error"))
+                        {
+                            _initiator.voucherCode = VoucherCode;
+                            _initiator.voucherDuration = Duration;
+                            _initiator.PrintVoucher();
+                            _initiator.SpArduinoConnection.Write("1");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to get voucher code. Please try again.", "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
                 else
                 {
-                    lblError.Text = "Invalid or unavailable credits.";
+                    MessageBox.Show("Invalid or unavailable credits.", "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                lblError.Text = "An error occurred: " + ex.Message;
+                MessageBox.Show($"An error occurred: {ex.Message}", "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
                 Hours3.Enabled = true;
                 Hours8.Enabled = true;
                 Hours24.Enabled = true;
-                Cursor = Cursors.Default;
-                lblError.Text = ""; 
+                Cursor = Cursors.Default; 
             }
         }
 
@@ -71,28 +77,35 @@ namespace Chemical_Ne
             {
                 if (!string.IsNullOrEmpty(lblCredits.Text) && credits != 0 && lblCredits.Text != "Retrieving...")
                 {
-                    Cursor = Cursors.WaitCursor;
-                    var (VoucherCode, Duration) = Initiator.GetVoucherInfo(480);
-                    if (!string.IsNullOrEmpty(VoucherCode) && !VoucherCode.StartsWith("Error"))
+                    if (credits < 10)
                     {
-                        _initiator.voucherCode = VoucherCode;
-                        _initiator.voucherDuration = Duration;
-                        _initiator.PrintVoucher();
-                        _initiator.SpArduinoConnection.Write("2");
+                        MessageBox.Show("Insufficient credit balance.", "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        lblError.Text = "Failed to get voucher code. Please try again.";
-                    }
+                        Cursor = Cursors.WaitCursor;
+                        var (VoucherCode, Duration) = Initiator.GetVoucherInfo(480);
+                        if (!string.IsNullOrEmpty(VoucherCode) && !VoucherCode.StartsWith("Error"))
+                        {
+                            _initiator.voucherCode = VoucherCode;
+                            _initiator.voucherDuration = Duration;
+                            _initiator.PrintVoucher();
+                            _initiator.SpArduinoConnection.Write("2");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to get voucher code. Please try again.", "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }  
                 }
                 else
                 {
-                    lblError.Text = "Invalid or unavailable credits.";
+                    MessageBox.Show("Invalid or unavailable credits.", "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                lblError.Text = "An error occurred: " + ex.Message;
+                MessageBox.Show($"An error occurred: {ex.Message}", "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -100,7 +113,6 @@ namespace Chemical_Ne
                 Hours8.Enabled = true;
                 Hours24.Enabled = true;
                 Cursor = Cursors.Default;
-                lblError.Text = "";
             }
         }
 
@@ -116,30 +128,36 @@ namespace Chemical_Ne
             {
                 if (!string.IsNullOrEmpty(lblCredits.Text) && credits != 0 && lblCredits.Text != "Retrieving...")
                 {
-                    Cursor = Cursors.WaitCursor;
-                    var (VoucherCode, Duration) = Initiator.GetVoucherInfo(1440);
-                    if (!string.IsNullOrEmpty(VoucherCode) && !VoucherCode.StartsWith("Error"))
+                    if (credits < 25)
                     {
-                        _initiator.voucherCode = VoucherCode;
-                        _initiator.voucherDuration = Duration;
-                        _initiator.PrintVoucher();
-                        _initiator.SpArduinoConnection.Write("2");
-                        _initiator.SpArduinoConnection.Write("2");
-                        _initiator.SpArduinoConnection.Write("1");
+                        MessageBox.Show("Insufficient credit balance.", "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                     else
                     {
-                        lblError.Text = "Failed to get voucher code. Please try again.";
+                        Cursor = Cursors.WaitCursor;
+                        var (VoucherCode, Duration) = Initiator.GetVoucherInfo(1440);
+                        if (!string.IsNullOrEmpty(VoucherCode) && !VoucherCode.StartsWith("Error"))
+                        {
+                            _initiator.voucherCode = VoucherCode;
+                            _initiator.voucherDuration = Duration;
+                            _initiator.PrintVoucher();
+                            _initiator.SpArduinoConnection.Write("4");
+                            _initiator.SpArduinoConnection.Write("1");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to get voucher code. Please try again.", "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
                 else
                 {
-                    lblError.Text = "Invalid or unavailable credits.";
+                    MessageBox.Show("Invalid or unavailable credits.", "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                lblError.Text = "An error occurred: " + ex.Message;
+                MessageBox.Show($"An error occurred: {ex.Message}", "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -147,7 +165,6 @@ namespace Chemical_Ne
                 Hours8.Enabled = true;
                 Hours24.Enabled = true;
                 Cursor = Cursors.Default;
-                lblError.Text = "";
             }
         }
 
