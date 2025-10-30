@@ -64,7 +64,7 @@
         private System.Windows.Forms.Timer TmrServerConnectionStatus;
         private System.IO.Ports.SerialPort serialPort1;
         private System.Drawing.Printing.PrintDocument PdPrinter;
-        private System.IO.Ports.SerialPort SpArduinoConnection;
+        public System.IO.Ports.SerialPort SpArduinoConnection;
     }
 }
 
