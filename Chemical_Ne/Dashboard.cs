@@ -128,5 +128,10 @@ namespace Chemical_Ne
             }
         }
 
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            _initiator.SpArduinoConnection.Write("8");
+            MessageBox.Show("Session has been reset.", "Reset", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

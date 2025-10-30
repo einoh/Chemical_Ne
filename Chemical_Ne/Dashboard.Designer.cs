@@ -253,6 +253,7 @@
             this.btnReset.Size = new System.Drawing.Size(26, 23);
             this.btnReset.TabIndex = 11;
             this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // Dashboard
             // 
