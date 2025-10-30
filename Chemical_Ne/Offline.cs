@@ -18,5 +18,10 @@ namespace Chemical_Ne
             InitializeComponent();
             _initiator = initiator;
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
