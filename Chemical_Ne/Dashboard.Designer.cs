@@ -47,6 +47,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -56,6 +60,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblCredits
@@ -120,7 +125,7 @@
             this.groupBox2.Controls.Add(this.Hours8);
             this.groupBox2.Controls.Add(this.Hours24);
             this.groupBox2.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(398, 137);
+            this.groupBox2.Location = new System.Drawing.Point(394, 137);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(286, 325);
             this.groupBox2.TabIndex = 6;
@@ -132,18 +137,18 @@
             this.groupBox3.Controls.Add(this.button2);
             this.groupBox3.Controls.Add(this.button1);
             this.groupBox3.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox3.Location = new System.Drawing.Point(701, 137);
+            this.groupBox3.Location = new System.Drawing.Point(697, 137);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(287, 325);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "PC RENTAL";
+            this.groupBox3.Text = "PC/PHONE RENTAL VAOUCHER";
             // 
             // button2
             // 
             this.button2.Enabled = false;
             this.button2.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(17, 135);
+            this.button2.Location = new System.Drawing.Point(17, 163);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(247, 70);
             this.button2.TabIndex = 0;
@@ -154,7 +159,7 @@
             // 
             this.button1.Enabled = false;
             this.button1.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(17, 41);
+            this.button1.Location = new System.Drawing.Point(17, 76);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(247, 70);
             this.button1.TabIndex = 0;
@@ -257,12 +262,57 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.label4);
+            this.groupBox5.Controls.Add(this.label3);
+            this.groupBox5.Controls.Add(this.label2);
+            this.groupBox5.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.groupBox5.Location = new System.Drawing.Point(394, 484);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(590, 237);
+            this.groupBox5.TabIndex = 9;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "STEPS TO BUY";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(38, 80);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(494, 19);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "STEP 2: Select a voucher, either for WiFi or PC/Phone Rental.";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(38, 46);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(529, 19);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "STEP 1: Insert a coin of the same value as the desired purchase.";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(38, 116);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(431, 19);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "STEP 3: Retrieve the printed voucher from the printer.";
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1004, 748);
             this.ControlBox = false;
+            this.Controls.Add(this.groupBox5);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.label1);
@@ -284,6 +334,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox5.ResumeLayout(false);
+            this.groupBox5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -309,5 +361,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
     }
 }
