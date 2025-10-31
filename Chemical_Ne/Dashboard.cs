@@ -32,7 +32,7 @@ namespace Chemical_Ne
                     else
                     {
                         Cursor = Cursors.WaitCursor;
-                        var (VoucherCode, Duration) = Initiator.GetVoucherInfo(60);
+                        var (VoucherCode, Duration) = Initiator.GetVoucherInfo(180);
                         if (!string.IsNullOrEmpty(VoucherCode) && !VoucherCode.StartsWith("Error"))
                         {
                             _initiator.voucherCode = VoucherCode;

@@ -142,7 +142,7 @@
             this.groupBox3.Size = new System.Drawing.Size(287, 325);
             this.groupBox3.TabIndex = 7;
             this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "PC/PHONE RENTAL VAOUCHER";
+            this.groupBox3.Text = "PC/PHONE RENTAL VOUCHER";
             // 
             // button2
             // 
