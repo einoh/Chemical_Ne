@@ -136,8 +136,11 @@ namespace Chemical_Ne
         {
             try
             {
+                string defaultPrinterName = new System.Drawing.Printing.PrinterSettings().PrinterName;
                 bool printerFound = false;
-                using (var searcher = new ManagementObjectSearcher("SELECT * FROM Win32_Printer"))
+
+                using (var searcher = new ManagementObjectSearcher(
+                    "SELECT * FROM Win32_Printer WHERE Name = '" + defaultPrinterName.Replace("'", "\\'") + "'"))
                 {
                     foreach (ManagementObject printer in searcher.Get().Cast<ManagementObject>())
                     {
